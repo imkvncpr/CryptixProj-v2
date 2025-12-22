@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual Environment - IMPORTANT!
+venv/
+env/
+ENV/
+.venv
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Machine Learning
+models/**/checkpoint/
+data/raw/
+*.pkl
+
+# Keep final models
+!models/*/model.keras
+!models/*/scaler.pkl
