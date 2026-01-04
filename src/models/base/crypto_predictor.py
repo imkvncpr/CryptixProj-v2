@@ -30,6 +30,8 @@ class CryptoPredictor(ABC):
     Subclasses must implement download_data() method.
     """
     
+    _NOT_TRAINED_ERROR = "Model is not trained yet. Call fit() first."
+    
     def __init__(
         self,
         ticker: str,
@@ -226,7 +228,7 @@ class CryptoPredictor(ABC):
             Predicted prices
         """
         if self.model is None:
-            raise ValueError("Model is not trained yet. Call fit() first.")
+            raise ValueError(self._NOT_TRAINED_ERROR)
         
         predictions_scaled = self.model.predict(x, verbose=0)
         predictions = self.scaler.inverse_transform(predictions_scaled)
@@ -288,7 +290,7 @@ class CryptoPredictor(ABC):
             Dictionary of evaluation metrics
         """
         if self.model is None:
-            raise ValueError("Model is not trained yet. Call fit() first.")
+            raise ValueError(self._NOT_TRAINED_ERROR)
         
         # Predictions
         y_pred_scaled = self.model.predict(x_test, verbose=0).flatten()
@@ -390,7 +392,7 @@ class CryptoPredictor(ABC):
             path: Directory path to save to
         """
         if self.model is None:
-            raise ValueError("Model is not trained yet. Call fit() first.")
+            raise ValueError(self._NOT_TRAINED_ERROR)
         
         path_obj = Path(path)
         path_obj.mkdir(parents=True, exist_ok=True)
