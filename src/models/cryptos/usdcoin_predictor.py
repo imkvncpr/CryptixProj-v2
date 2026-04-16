@@ -61,7 +61,7 @@ def main():
         print(f"   ✓ Downloaded {len(data)} days")
         
         summary = usdc.get_price_summary(data)
-        print(f"\n3. Price Statistics:")
+        print("\n3. Price Statistics:")
         print(f"   Current: ${summary['current']:.6f}")
         print(f"   Deviation from $1: ${abs(summary['current'] - 1.0):.6f}")
         print(f"   Volatility: {summary['volatility']:.4f}%")
