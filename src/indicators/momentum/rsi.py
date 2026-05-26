@@ -16,53 +16,32 @@ class RSI(BaseIndicator):
         
     def calculate(self, data: pd.DataFrame)-> pd.Series:
         self.validate_data(data)
-        
         close = data['close']
-        
         delta = close.diff()
-        
         gain = delta.where(delta > 0, 0)
-        
         loss = -delta.where(delta < 0, 0)
-        
         avg_gain = gain.rolling(window = self.period).mean()
-        
         avg_loss = loss.rolling(window = self.period).mean()
-        
         rs = avg_gain / avg_loss
-        
         rsi = 100 - (100 / (1 + rs))
-        
         self.values = rsi
-        
         return rsi
     
     def interpret(self, current_value: float)-> Dict[str, Any]:
         if current_value > 70:
             signal = "SELL"
-            
             strength = "STRONG" if current_value > 80 else "MODERATE"
-            
             confidence = 85 if current_value > 80 else 70
-            
             reasoning = f"RSI at {current_value:.1f} - Overbought Condition"
-            
         elif current_value < 30:
             signal = "BUY"
-            
             strength = "STRONG" if current_value < 20 else "MODERATE"
-            
             confidence = 85 if current_value < 20 else 70
-            
-            reasoning = f"RSI at {current_value: .1f} - Oversold Condition"
-            
+            reasoning = f"RSI at {current_value: .1f} - Oversold Condition" 
         else:
             signal = "HOLD"
-            
             strength = "NEUTRAL"
-            
             confidence = 50
-            
             reasoning = f"RSI at {current_value: .1f} - Neutral Zone"
             
         return{
