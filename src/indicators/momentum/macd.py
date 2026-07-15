@@ -114,5 +114,5 @@ if __name__ == "__main__":
         print(f"Histogram: {result['values']['histogram']:.4f}")
         print("\n✅ MACD indicator working!")
     else:
-        print("❌ No signal generated")                
+        print(" No signal generated")                
                 

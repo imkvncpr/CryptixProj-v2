@@ -2,7 +2,7 @@ import logging
 from typing import List, Dict, Optional, Any
 
 
-from src.signals.signal_types import Signal, SignalType, Strength, Confidence, create_signal
+from ..signals.signal_types import Signal, SignalType, Strength, Confidence, create_signal
 from ..indicators.momentum.rsi import RSI   
 from ..indicators.momentum.macd import MACD
 from ..indicators.volatility.bollinger_bands import BollingerBands
